@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1080.0" style="-fx-background-color: #FFFAFA; -fx-background-radius: 10; -fx-border-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxControllers.pictureProcess.others.ControllerOtherColorToGray">
+   <children>
+      <ScrollPane layoutX="32.0" layoutY="55.0" prefHeight="425.0" prefWidth="450.0" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+         <content>
+            <FlowPane fx:id="flowPaneColor" hgap="5.0" prefHeight="427.0" prefWidth="448.0" style="-fx-border-color: #696969; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-color: #DCDCDC; -fx-background-radius: 10;" vgap="20.0">
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="buttchooseColor" layoutX="351.0" layoutY="507.0" mnemonicParsing="false" onAction="#tobuttchooseColor" prefHeight="30.0" prefWidth="118.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" text="选择彩色图像" />
+      <Text fx:id="textColor" layoutX="232.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="彩色图像" wrappingWidth="80.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="textRun" layoutX="32.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="运行进度：" wrappingWidth="92.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ProgressBar fx:id="pbBF" layoutX="122.0" layoutY="582.0" prefHeight="28.0" prefWidth="520.0" progress="0.0" />
+      <Button fx:id="True" layoutX="974.0" layoutY="571.0" mnemonicParsing="false" onAction="#TrueColorToGray" prefHeight="50.0" prefWidth="92.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" text="开始">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Text fx:id="textGray" layoutX="755.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="灰色图像" wrappingWidth="80.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="secretSaveYJ" layoutX="849.0" layoutY="507.0" mnemonicParsing="false" onAction="#toImageSaveYJ" prefHeight="28.0" prefWidth="86.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" text="一键保存" />
+      <Button fx:id="secretSave" layoutX="963.0" layoutY="507.0" mnemonicParsing="false" onAction="#toImageSave" prefHeight="30.0" prefWidth="57.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" text="保存" />
+      <ScrollPane layoutX="585.0" layoutY="55.0" prefHeight="425.0" prefWidth="450.0" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+         <content>
+            <FlowPane fx:id="flowPaneGray" hgap="5.0" prefHeight="427.0" prefWidth="448.0" style="-fx-border-color: #696969; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-color: #DCDCDC; -fx-background-radius: 10;" vgap="20.0">
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <Text layoutX="500.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------&gt;">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text layoutX="509.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="转换">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

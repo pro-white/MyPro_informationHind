@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="tipsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="320.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #696969; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxControllers.tips.TipsController">
+   <center>
+      <AnchorPane prefHeight="190.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="confirmButton" layoutX="150.0" layoutY="133.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="74.0" style="-fx-background-color: #6e4e4e;" text="确认" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="tipsImage" fitHeight="48.0" fitWidth="50.0" layoutX="22.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/error.png" />
+               </image>
+            </ImageView>
+            <TextArea fx:id="tipsText" layoutX="83.0" layoutY="23.0" prefHeight="91.0" prefWidth="209.0" style="-fx-border-width: 0 0 0 0; -fx-background-color: transparent; -fx-border-color: #f4f4f4;" stylesheets="@../../../LoginDemo/resources/css/TipsCss.css" text="信息提示框日撒打发手动阀手动阀" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="tipsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="260.0" style="-fx-border-color: #696969; -fx-background-color: #f4f4f4; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxControllers.tips.TipsFeedbackController">
+   <center>
+      <AnchorPane prefHeight="63.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="confirmButton" layoutX="44.0" layoutY="22.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="74.0" style="-fx-background-color: #6e4e4e;" text="确认" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancelButton" layoutX="134.0" layoutY="22.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="74.0" style="-fx-background-color: #6e4e4e;" text="取消" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="70.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="tipsImage" fitHeight="35.0" fitWidth="35.0" layoutX="27.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/help.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="tipsText" layoutX="69.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="确定是此图片吗？">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

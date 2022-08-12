@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="MainRootAn" prefHeight="772.0" prefWidth="1190.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxControllers.ControllerEntry">
+   <style>-fx-background-size: cover; -fx-background-color: #C0C0C0;</style>
+   <children>
+      <AnchorPane fx:id="MainAnOther" layoutX="84.0" layoutY="100.0" prefHeight="640.0" prefWidth="1070.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #A9A9A9; -fx-border-width: 2;">
+         <children>
+            <Text layoutX="308.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="提示：" wrappingWidth="308.30029296875">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="360.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="左上角：对图像进行拆分、恢复、隐藏等操作。" wrappingWidth="402.30029296875">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text layoutX="360.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="左边框：依次是回到主页、保存图片、刷新页面、疑问、图片搜索。" wrappingWidth="386.30029296875">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-1.0" layoutY="28.0" prefHeight="40.0" prefWidth="1191.0" style="-fx-border-color: #808080; -fx-background-color: #DCDCDC;">
+         <children>
+            <MenuBar fx:id="MenuBar" layoutX="-6.0" prefHeight="32.0" prefWidth="572.0" style="-fx-background-color: transparent;">
+              <menus>
+                <Menu mnemonicParsing="false" text="图像隐藏">
+                     <items>
+                        <Menu mnemonicParsing="false" text="可逆信息隐藏">
+                          <items>
+                              <MenuItem fx:id="enterSceretHindImagePKK" mnemonicParsing="false" onAction="#enterSceretHindImagePKK" text="图像隐藏（PKK）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/true.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></MenuItem>
+                              <MenuItem fx:id="enterSceretHindImageTJC2015" mnemonicParsing="false" onAction="#enterSceretHindImageTJC2015" text="图像隐藏（TJC2015）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/true.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
+                              <MenuItem fx:id="enterSceretHindImageSSVT2019" mnemonicParsing="false" onAction="#enterSceretHindImageSSVT2019" text="图像隐藏（SSVT2019）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/true.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></MenuItem>
+                              <MenuItem fx:id="enterSceretHindImageMyMDP1" mnemonicParsing="false" onAction="#enterSceretHindImageMyMDP1" text="图像隐藏（MyMDP1）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/true.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></MenuItem>
+                          </items>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/images/restore.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="不可逆信息隐藏">
+                          <items>
+                              <MenuItem fx:id="enterSceretHindImageAKSGS2019" mnemonicParsing="false" onAction="#enterSceretHindImageAKSGS2019" text="图像隐藏（MDPAK2019）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/hind.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
+                              <MenuItem fx:id="enterSceretHindImageAKSGS20192" mnemonicParsing="false" onAction="#enterSceretHindImageAKSGS20192" text="图像隐藏（MDPAK20192）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/hind.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
+                              <MenuItem fx:id="enterSceretHindImage1" mnemonicParsing="false" onAction="#enterSceretHindImage1" text="图像隐藏（LSB_原1）" />
+                              <MenuItem fx:id="enterSceretHindImage2" mnemonicParsing="false" onAction="#enterSceretHindImage2" text="图像隐藏（LSB_改2）" />
+                              <MenuItem fx:id="enterSceretHindImageMy1" mnemonicParsing="false" onAction="#enterSceretHindImageMy1" text="图像隐藏（My1）" />
+                          </items>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/irreversible.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Menu>
+                     </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="秘图恢复">
+                     <items>
+                        <Menu mnemonicParsing="false" text="可逆信息提取与恢复">
+                          <items>
+                              <MenuItem fx:id="enterHindImageRecoPKK" mnemonicParsing="false" onAction="#enterHindImageRecoPKK" text="恢复秘图（PKK）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/true.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></MenuItem>
+                              <MenuItem fx:id="enterHindImageRecoTJC2015" mnemonicParsing="false" onAction="#enterHindImageRecoTJC2015" text="恢复秘图（TJC2015）" />
+                              <MenuItem fx:id="enterHindImageRecoSSVT2019" mnemonicParsing="false" onAction="#enterHindImageRecoSSVT2019" text="恢复秘图（SSVT2019）" />
+                              <MenuItem fx:id="enterHindImageRecoMyMDP1" mnemonicParsing="false" onAction="#enterHindImageRecoMyMDP1" text="恢复秘图（MyMDP1）" />
+                          </items>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/restore.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="不可逆信息提取">
+                          <items>
+                              <MenuItem fx:id="enterHindImageRecoAK2019" mnemonicParsing="false" onAction="#enterHindImageRecoAK2019" text="恢复秘图（MDPAK2019）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/image.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></MenuItem>
+                              <MenuItem fx:id="enterHindImageRecoAK20192" mnemonicParsing="false" onAction="#enterHindImageRecoAK20192" text="恢复秘图（MDPAK20192）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/image.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
+                              <MenuItem fx:id="enterHindImageReco1" mnemonicParsing="false" onAction="#enterHindImageReco1" text="恢复秘图（LSB_原1）" />
+                              <MenuItem fx:id="enterHindImageReco2" mnemonicParsing="false" onAction="#enterHindImageReco2" text="恢复秘图（LSB_改2）" />
+                              <MenuItem fx:id="enterHindImageRecoMy1" mnemonicParsing="false" onAction="#enterHindImageRecoMy1" text="恢复秘图（My1）" />
+                          </items>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/irreversible.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Menu>
+                     </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="图像其他操作">
+                     <items>
+                        <MenuItem fx:id="enterSceretBF" mnemonicParsing="false" onAction="#enterSceretBF" text="灰度图拆八">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/circled.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#enterColorToGray" text="彩色转灰度图像">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/conversion.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <Menu mnemonicParsing="false" text="图像秘密共享">
+                          <items>
+                            <MenuItem fx:id="enterCFsecret" mnemonicParsing="false" onAction="#enterCFsecretJM" text="拆分秘图（Shamir）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/thumbnails.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
+                            <MenuItem fx:id="enterHFsecret" mnemonicParsing="false" onAction="#enterHFsecretJM" text="恢复秘图（（Shamir）未可视化）">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/photo-edito.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
+                              <MenuItem fx:id="enterCFYUV" mnemonicParsing="false" onAction="#enterCFYUV" text="图像拆分成YUV" />
+                          </items>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/InformationSharing.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Menu>
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="图像分析">
+                    <items>
+                      <MenuItem fx:id="enterAnalysisPSNR" mnemonicParsing="false" onAction="#enterAnalysisPSNR" text="PSNR值">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/PSNR.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                        <MenuItem fx:id="enterAnalysisSSIM" mnemonicParsing="false" onAction="#enterAnalysisSSIM" text="SSIM值">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/SSIM.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="enterAnalysisRS" mnemonicParsing="false" onAction="#enterAnalysisRS" text="RS分析">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/RS.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <Menu mnemonicParsing="false" text="BPP">
+                          <items>
+                              <MenuItem fx:id="enterAnalysisBPPPKK" mnemonicParsing="false" onAction="#enterAnalysisBPPPKK" text="PKK" />
+                            <MenuItem fx:id="enterAnalysisBPPMyMDP1" mnemonicParsing="false" onAction="#enterAnalysisBPPMyMDP1" text="MyMDP1" />
+                              <MenuItem fx:id="enterAnalysisBPPMDPAK2019" mnemonicParsing="false" onAction="#enterAnalysisBPPMDPAK2019" text="MDPAK2019" />
+                              <MenuItem fx:id="enterAnalysisBPPMDPAK20192" mnemonicParsing="false" onAction="#enterAnalysisBPPMDPAK20192" text="MDPAK20192" />
+                              <MenuItem fx:id="enterAnalysisBPPSSVT2019" mnemonicParsing="false" onAction="#enterAnalysisBPPSSVT2019" text="SSVT2019" />
+                              <MenuItem fx:id="enterAnalysisBPPTJC2015" mnemonicParsing="false" onAction="#enterAnalysisBPPTJC2015" text="TJC2015" />
+                          </items>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/BPP.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Menu>
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <Text fx:id="textGN" layoutX="420.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-stroke-width: 2; -fx-line-spacing: 1;" text="【 主页面 】" textAlignment="CENTER" wrappingWidth="393.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="67.0" prefHeight="705.0" prefWidth="45.0" style="-fx-border-color: #808080; -fx-border-width: 0 1 0 0; -fx-background-color: #DCDCDC;">
+         <children>
+            <Button fx:id="hotKeyButtHome" layoutY="203.0" mnemonicParsing="false" onAction="#ButtHome" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/house.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="hotKeyButtSave" layoutY="253.0" mnemonicParsing="false" onAction="#ButtSave" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/save.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="hotKeyButtUpDate" layoutY="297.0" mnemonicParsing="false" onAction="#ButtUpDate" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/refresh.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="hotKeyButtAbout" layoutY="344.0" mnemonicParsing="false" onAction="#ButtAbout" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/about.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="hotKeyButtSteg" layoutY="392.0" mnemonicParsing="false" onAction="#ButtSteg" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/steganographie.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="30.0" prefWidth="1190.0" style="-fx-background-color: #DCDCDC;">
+         <children>
+            <ImageView fx:id="entryclose" fitHeight="25.0" fitWidth="25.0" layoutX="1164.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/shut.png" />
+                </image>
+            </ImageView>
+            <ImageView fx:id="entryclose1" fitHeight="20.0" fitWidth="20.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="40.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Secret image sharing system" wrappingWidth="234.0" />
+            <ImageView fx:id="minimizeImage" fitHeight="25.0" fitWidth="25.0" layoutX="1118.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/subtract.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
