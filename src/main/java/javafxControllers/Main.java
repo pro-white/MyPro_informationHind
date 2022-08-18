@@ -127,7 +127,7 @@ public class Main extends Application {
         Stage stage1 = new Stage();
         FileChooser fc = new FileChooser();
         fc.setTitle("文件保存");
-        fc.setInitialFileName("图");
+        fc.setInitialFileName("图1");
         fc.setInitialDirectory(new File("C:\\Users\\ASUS\\Desktop"));
         fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("文件类型", "*.tiff")
@@ -141,6 +141,25 @@ public class Main extends Application {
         return file;
     }
 
+    //文件保存
+    public static File imageSave1(int num) {
+        Stage stage1 = new Stage();
+        FileChooser fc = new FileChooser();
+        fc.setTitle("文件保存");
+        if (num == 1) fc.setInitialFileName("图1");
+        else fc.setInitialFileName("图2");
+        fc.setInitialDirectory(new File("C:\\Users\\ASUS\\Desktop"));
+        fc.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("文件类型", "*.tiff")
+        );
+
+        File file = fc.showSaveDialog(stage1);
+        if (file == null) {
+            return null;
+        }
+
+        return file;
+    }
     //文件读取并显示
     public static void fileShow(List<File> listfile, FileInputStream in[], Image image[], ArrayList<ImageView> ivs, ArrayList<FlowPane> fps, ArrayList<Text> textimgNames, PixelReader pr[], FlowPane flowPane) throws IOException {
         for (int i = 0; i < listfile.size(); i++) {
@@ -168,24 +187,26 @@ public class Main extends Application {
     }
 
     //文件读取并显示
-    public static void fileShow1(List<File> listfile, BufferedImage bufSave[], BufferedImage bufOriginalView[], ArrayList<ImageView> ivs, ArrayList<FlowPane> fps, ArrayList<Text> textimgNames, PixelReader pr[], FlowPane flowPane) throws IOException {
+    public static void fileShow1(List<File> listfile, BufferedImage bufSave1[], BufferedImage bufSave2[], BufferedImage bufCarrierRead[], BufferedImage bufOriginalView[], ArrayList<ImageView> ivs, ArrayList<FlowPane> fps, ArrayList<Text> textimgNames, PixelReader pr[], FlowPane flowPane) throws IOException {
         for (int i = 0; i < listfile.size(); i++) {
-            bufSave[i] = ImageIO.read(listfile.get(i));
+            bufSave1[i] = ImageIO.read(listfile.get(i));
+            bufSave2[i] = ImageIO.read(listfile.get(i));
+            bufCarrierRead[i] = ImageIO.read(listfile.get(i));
             bufOriginalView[i] = ImageIO.read(listfile.get(i));
             //得到图像的宽高。
             int width = bufOriginalView[i].getWidth();
             int height = bufOriginalView[i].getHeight();
             //用写入图像的函数。
-            WritableImage wi = new WritableImage(width,height);
+            WritableImage wi = new WritableImage(width, height);
             //将tiff图像转换为javafx可以显示的图像。
-            SwingFXUtils.toFXImage(bufOriginalView[i],wi);
+            SwingFXUtils.toFXImage(bufOriginalView[i], wi);
             ivs.add(new ImageView());
             ivs.get(i).setFitWidth(200);
             ivs.get(i).setPreserveRatio(true);
             ivs.get(i).setImage(wi);//将创建的空白照片放在一个照片显示区域。
             fps.add(new FlowPane());
             textimgNames.add(new Text());
-            pr[i] =  SwingFXUtils.toFXImage(bufOriginalView[i],wi).getPixelReader();
+            pr[i] = SwingFXUtils.toFXImage(bufOriginalView[i], wi).getPixelReader();
             fps.get(i).setHgap(10);
             fps.get(i).setVgap(10);
             fps.get(i).setMaxWidth(200);

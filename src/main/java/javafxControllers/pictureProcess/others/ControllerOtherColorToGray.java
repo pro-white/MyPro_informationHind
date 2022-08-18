@@ -64,6 +64,8 @@ public class ControllerOtherColorToGray {
 
     public static BufferedImage bufSave[]; //用于存放首先选择的图像的路径位置转化成bufferedimage流。
 
+    public static BufferedImage bufSaveNo[]; //用于存放首先选择的图像的路径位置转化成bufferedimage流。
+
     public static PixelReader pr[];
 
     public static ArrayList<ImageView> ivsColor = new ArrayList<ImageView>(); //用于放图彩色图像显示。
@@ -97,10 +99,11 @@ public class ControllerOtherColorToGray {
         }
 
         bufSave = new BufferedImage[listfile.size()];
+        bufSaveNo = new BufferedImage[listfile.size()];
         bufOriginalView = new BufferedImage[listfile.size()];
         pr = new PixelReader[listfile.size()];
         //调用文件读取并显示函数
-        Main.fileShow1(listfile, bufSave, bufOriginalView, ivsColor, fps, textimgNamesColor, pr, flowPaneColor);
+        Main.fileShow1(listfile, bufSaveNo, bufSaveNo, bufSave, bufOriginalView, ivsColor, fps, textimgNamesColor, pr, flowPaneColor);
     }
 
     @FXML
@@ -191,7 +194,7 @@ public class ControllerOtherColorToGray {
         for (int k = 0; k < images.getHeight(); ++k) {
             for (int j = 0; j < images.getWidth(); ++j) {
                 float sum = 0.0f;
-                    sum = sum + images.getRaster().getSample(j, k, 0);
+                sum = sum + images.getRaster().getSample(j, k, 0);
                 raster.setSample(j, k, 0, Math.round(sum));
             }
         }
