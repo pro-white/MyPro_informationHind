@@ -17,6 +17,7 @@ import utils.Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -59,17 +60,15 @@ public class ControllerOtherColorToGray {
 
     ScheduledService<Double> sche;
 
-    public static Image image;
+    public static BufferedImage bufOriginalView[]; //用于存放首先选择的图像的路径位置转化成bufferedimage流。
 
-    public static Image imageColor[];
-
-    public static FileInputStream in[];
+    public static BufferedImage bufSave[]; //用于存放首先选择的图像的路径位置转化成bufferedimage流。
 
     public static PixelReader pr[];
 
-    public static ArrayList<ImageView> ivsColor = new ArrayList<ImageView>();
+    public static ArrayList<ImageView> ivsColor = new ArrayList<ImageView>(); //用于放图彩色图像显示。
 
-    public static ArrayList<ImageView> ivsGray = new ArrayList<ImageView>();
+    public static ArrayList<ImageView> ivsGray = new ArrayList<ImageView>(); // 用于放灰色图像显示。
 
     public static ArrayList<Text> textimgNamesColor = new ArrayList<Text>();
 
@@ -89,7 +88,7 @@ public class ControllerOtherColorToGray {
             FileChooser fc = new FileChooser(); //创建一个file的对象
             fc.setTitle("图片多选选择");//为打开文件右上角的窗口命名。
             fc.setInitialDirectory(new File("C:\\Users\\ASUS\\Desktop"));//这是指定打开文件的路径
-            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("图片类型", "*.jpg", "*.png"));
+            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("图片类型", "*.jpg", "*.png", "*.tif", "*.tiff"));
             listfile = fc.showOpenMultipleDialog(stage); //多选文件，返回的是一个列表
             if (listfile == null) {
                 return;
@@ -97,11 +96,11 @@ public class ControllerOtherColorToGray {
             Main.framePointReturn("确定是这些图片吗？", flagtu);
         }
 
-        imageColor = new Image[listfile.size()];
-        in = new FileInputStream[listfile.size()];
+        bufSave = new BufferedImage[listfile.size()];
+        bufOriginalView = new BufferedImage[listfile.size()];
         pr = new PixelReader[listfile.size()];
         //调用文件读取并显示函数
-        Main.fileShow(listfile, in, imageColor, ivsColor, fps, textimgNamesColor, pr, flowPaneColor);
+        Main.fileShow1(listfile, bufSave, bufOriginalView, ivsColor, fps, textimgNamesColor, pr, flowPaneColor);
     }
 
     @FXML
@@ -115,9 +114,9 @@ public class ControllerOtherColorToGray {
         String fileName[] = new String[listfile.size()];
         for (int i = 0; i < listfile.size(); i++) {
             StringBuffer sb = new StringBuffer(file.getAbsolutePath());
-            sb.insert(sb.length() - 4, "_" + i);
+            sb.insert(sb.length() - 5, "_" + i);
             fileName[i] = sb.toString();
-            ImageIO.write(SwingFXUtils.fromFXImage(ivsGray.get(i).getImage(), null), "png", new File(fileName[i]));
+            ImageIO.write(bufSave[i], "tiff", new File(fileName[i]));
         }
 
         //调用提示框函数
@@ -135,14 +134,12 @@ public class ControllerOtherColorToGray {
             return;
         }
 
-        BufferedImage bi[] = new BufferedImage[listfile.size()];
         String fileName[] = new String[listfile.size()];
         for (int i = 0; i < listfile.size(); i++) {
-            StringBuffer sb = new StringBuffer("C:/Users/ASUS/Desktop/默认.jpg");
-            sb.insert(sb.length() - 4, "_" + i);
+            StringBuffer sb = new StringBuffer("C:/Users/ASUS/Desktop/默认.tiff");
+            sb.insert(sb.length() - 5, "_" + i);
             fileName[i] = sb.toString();
-            bi[i] = SwingFXUtils.fromFXImage(ivsGray.get(i).getImage(), null);
-            ImageIO.write(bi[i], "png", new File(fileName[i]));
+            ImageIO.write(bufSave[i], "tiff", new File(fileName[i]));
         }
 
         Stage stage1 = (Stage) secretSaveYJ.getScene().getWindow();
@@ -156,47 +153,49 @@ public class ControllerOtherColorToGray {
     @FXML
     void TrueColorToGray(ActionEvent event) {
         fps.clear();
-//        ivsGray.clear();
-//        flowPaneColor.getChildren().clear();
-//        flowPaneGray.getChildren().clear();
+
         //判断隐藏图片和载体图片是否已经选择，为空则不执行。
         if (ivsColor.isEmpty()) {
             return;
         }
-        int num = 0;
-        for (int theNumberPicture = 0; theNumberPicture < imageColor.length; theNumberPicture++) { //按顺序获得用户选择的图像。
+        for (int theNumberPicture = 0; theNumberPicture < bufOriginalView.length; theNumberPicture++) { //按顺序获得用户选择的图像。
             // 获得原载体图像的宽高。
-            int widthColor = (int) imageColor[theNumberPicture].getWidth();
-            int heightColor = (int) imageColor[theNumberPicture].getHeight();
-            System.out.println("youmeyou");
-
-            // 读取像素值。
-            PixelReader pReaderColor = imageColor[theNumberPicture].getPixelReader(); //读取第numImage幅隐藏图像的像素值。
-
+            int widthColor = (int) ivsColor.get(theNumberPicture).getImage().getWidth();
+            int heightColor = (int) ivsColor.get(theNumberPicture).getImage().getHeight();
+            bufSave[theNumberPicture] = average(bufSave[theNumberPicture]);
             //写入像素值。
-            WritableImage wi[] = new WritableImage[imageColor.length]; // 创建写入image的数组对象。
+            WritableImage wi[] = new WritableImage[bufOriginalView.length]; // 创建写入image的数组对象。
             wi[theNumberPicture] = new WritableImage(widthColor, heightColor);
-            PixelWriter pw[] = new PixelWriter[imageColor.length];//创建读取image的数组对象。
-            pw[theNumberPicture] = wi[theNumberPicture].getPixelWriter();//调用图像写入函数。
 
-            int piexlGray = 0;
             for (int pixeli = 0; pixeli < heightColor; pixeli++) {
                 for (int pixelj = 0; pixelj < widthColor; pixelj++) {
-                    int piexlColorRed = (pReaderColor.getArgb(pixelj, pixeli) >> 16) & 0xff;
-                    int piexlColorGreed = (pReaderColor.getArgb(pixelj, pixeli) >> 8) & 0xff;
-                    int piexlColorBlue = pReaderColor.getArgb(pixelj, pixeli) & 0xff;
-
-                    piexlGray = (piexlColorRed * 38 + piexlColorGreed * 75 + piexlColorBlue * 15) >> 7;
-//                    pw[theNumberPicture].setColor(pixelj,pixeli, Color.rgb(piexlColorRed,piexlColorGreed,piexlColorBlue));
-                    pw[theNumberPicture].setColor(pixelj, pixeli, Color.grayRgb(piexlGray));
+                    int piexl = bufSave[theNumberPicture].getRGB(pixeli, pixelj);
+                    int piexlColorRed = (piexl >> 16) & 0xff;
+                    int piexlColorGreed = (piexl >> 8) & 0xff;
+                    int piexlColorBlue = piexl & 0xff;
+                    int colorValue = piexlColorBlue | piexlColorGreed << 8 | piexlColorRed << 16;
+                    bufSave[theNumberPicture].setRGB(pixeli, pixelj, colorValue);
                 }
             }
-            System.out.println("fadfas");
             ivsGray.add(new ImageView());//创建一个imageview的对象。
             ivsGray.get(theNumberPicture).setFitWidth(200);//设置imageview的对象的宽度。
             ivsGray.get(theNumberPicture).setPreserveRatio(true);//imageview的对象按原比例显示图片。
-            ivsGray.get(theNumberPicture).setImage(wi[theNumberPicture]);//将创建的用于影子图像写入像素值的空白区域，放入imageview显示出来。
+            ivsGray.get(theNumberPicture).setImage(SwingFXUtils.toFXImage(bufSave[theNumberPicture], wi[theNumberPicture]));//将创建的用于影子图像写入像素值的空白区域，放入imageview显示出来。
             flowPaneGray.getChildren().add(ivsGray.get(theNumberPicture));//将imageview的集合放入根节点中，显示出来。\
         }
+    }
+
+    public static BufferedImage average(BufferedImage images) {
+        BufferedImage average = new BufferedImage(images.getWidth(), images.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+        WritableRaster raster = average.getRaster().createCompatibleWritableRaster();
+        for (int k = 0; k < images.getHeight(); ++k) {
+            for (int j = 0; j < images.getWidth(); ++j) {
+                float sum = 0.0f;
+                    sum = sum + images.getRaster().getSample(j, k, 0);
+                raster.setSample(j, k, 0, Math.round(sum));
+            }
+        }
+        average.setData(raster);
+        return average;
     }
 }
