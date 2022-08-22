@@ -137,7 +137,7 @@ public class ControllerAnalysisBPPAKSGS20192 {
 
                 //步骤二 ：通过差值d去查表获得嵌入的信息的位数。
                 int n = ControllerHindImageAKSGS20192.TableOfDifferenceRanges(d);
-                BPPnumber += n;
+                BPPnumber += 2*n;
             }
             double bpp = BPPnumber * 1.0 / (widthCarrier * heightCarrier);
             java.text.DecimalFormat dF = new java.text.DecimalFormat("0.00");

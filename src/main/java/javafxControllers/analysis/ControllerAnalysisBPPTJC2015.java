@@ -126,7 +126,7 @@ public class ControllerAnalysisBPPTJC2015 {
                     carrierHomej = 0;
                 }
                 int kPow = (int) Math.pow(2, k - 1);
-                if (x <= kPow | x >= (256 - kPow)) {
+                if (x < kPow | x > (256 - kPow)) {
                     continue;
                 }
                 BPPnumber += k;
