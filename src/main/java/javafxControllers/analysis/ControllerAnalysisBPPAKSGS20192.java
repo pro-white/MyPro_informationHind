@@ -79,7 +79,7 @@ public class ControllerAnalysisBPPAKSGS20192 {
             FileChooser fc = new FileChooser(); //创建一个file的对象
             fc.setTitle("图片多选选择");//为打开文件右上角的窗口命名。
             fc.setInitialDirectory(new File("C:"));//这是指定打开文件的路径
-            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("图片类型", "*.jpg", "*.png" , "*.tif"));
+            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("图片类型", "*.jpg", "*.png", "*.tif"));
             listfile = fc.showOpenMultipleDialog(stage); //多选文件，返回的是一个列表
             if (listfile == null) {
                 return;
@@ -118,14 +118,14 @@ public class ControllerAnalysisBPPAKSGS20192 {
             boolean flag = true;
             while (flag) {
                 // 首先将图像的像素分成1*2不重叠的像素块。
-                if (carrierHomei == heightCarrier)break;
+                if (carrierHomei == heightCarrier) break;
                 int px = (pixelReaderCarrier.getArgb(carrierHomej, carrierHomei)) & 0xff;
                 carrierHomej++;
                 if (carrierHomej == widthCarrier) {
                     carrierHomej = 0;
                     carrierHomei++;
                 }
-                if (carrierHomei == heightCarrier)break;
+                if (carrierHomei == heightCarrier) break;
                 int px1 = (pixelReaderCarrier.getArgb(carrierHomej, carrierHomei)) & 0xff;
                 carrierHomej++;
                 if (carrierHomej == widthCarrier) {
@@ -137,7 +137,7 @@ public class ControllerAnalysisBPPAKSGS20192 {
 
                 //步骤二 ：通过差值d去查表获得嵌入的信息的位数。
                 int n = ControllerHindImageAKSGS20192.TableOfDifferenceRanges(d);
-                BPPnumber += n;
+                BPPnumber += 2 * n;
             }
             double bpp = BPPnumber * 1.0 / (widthCarrier * heightCarrier);
             java.text.DecimalFormat dF = new java.text.DecimalFormat("0.00");

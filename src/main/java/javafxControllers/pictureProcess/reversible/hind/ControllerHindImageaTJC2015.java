@@ -292,7 +292,7 @@ public class ControllerHindImageaTJC2015 {
                     carrierHomej = 0;
                 }
                 int kPow = (int) Math.pow(2, k - 1);
-                if (x <= kPow | x >= (256 - kPow)) {
+                if (x < kPow | x > (256 - kPow)) {
                     pw[imageCarrierNumber1].setColor(carrierEndj, carrierEndi, Color.grayRgb(x));
                     pw[imageCarrierNumber2].setColor(carrierEndj, carrierEndi, Color.grayRgb(x));
                     carrierEndj++;
@@ -440,7 +440,7 @@ public class ControllerHindImageaTJC2015 {
 
                 //步骤二 ：判断两个像素值是否相等，如果相等且在一下范围内，就跳过。
                 int kPow = (int) Math.pow(2, k - 1);
-                if (x1 == x2 && x1 <= kPow | x1 >= (256 - kPow)) {
+                if (x1 == x2 && x1 < kPow | x1 > (256 - kPow)) {
                     continue;
                 }
 
