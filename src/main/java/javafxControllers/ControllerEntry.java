@@ -155,6 +155,12 @@ public class ControllerEntry {
 
 
     @FXML
+    void enterSceretHindImagePMAT2018(ActionEvent event) throws IOException {
+        Interfacejump("/javafx/pictureProcess/reversible/hind/secretHindImagePMTA2018.fxml", "【 PMTA2018】");
+    }
+
+
+    @FXML
     void enterSceretHindImageAKSGS2019(ActionEvent event) throws IOException {
         Interfacejump("/javafx/pictureProcess/irreversible/hind/secretHindImageAKSGS2019.fxml", "【 图像隐藏（MDPAKSGS2019） 】");
     }
@@ -215,7 +221,12 @@ public class ControllerEntry {
 
     @FXML
     void enterAnalysisBPPSSVT2019(ActionEvent event) throws IOException {
-        Interfacejump("/javafx/analysis/AnalysisBPPSSVT2019.fxml", "【 BPP(SSVT2019) 】");
+        Interfacejump("/javafx/analysis/AnalysisBPPSSVT2019.fxml", "【 BPP(PMAT2018) 】");
+    }
+
+    @FXML
+    void enterAnalysisBPPPMTA2018(ActionEvent event) throws IOException {
+        Interfacejump("/javafx/analysis/AnalysisBPPPMTA2018.fxml", "【 BPP(SSVT2019) 】");
     }
 
 

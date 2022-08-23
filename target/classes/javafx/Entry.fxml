@@ -72,6 +72,15 @@
                                        </image>
                                     </ImageView>
                                  </graphic></MenuItem>
+                              <MenuItem fx:id="enterSceretHindImagePMAT2018" mnemonicParsing="false" onAction="#enterSceretHindImagePMAT2018" text="图像隐藏（PMAT2018)">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/true.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
                           </items>
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -260,6 +269,7 @@
                               <MenuItem fx:id="enterAnalysisBPPMDPAK20192" mnemonicParsing="false" onAction="#enterAnalysisBPPMDPAK20192" text="MDPAK20192" />
                               <MenuItem fx:id="enterAnalysisBPPSSVT2019" mnemonicParsing="false" onAction="#enterAnalysisBPPSSVT2019" text="SSVT2019" />
                               <MenuItem fx:id="enterAnalysisBPPTJC2015" mnemonicParsing="false" onAction="#enterAnalysisBPPTJC2015" text="TJC2015" />
+                              <MenuItem fx:id="enterAnalysisBPPPMTA2018" mnemonicParsing="false" onAction="#enterAnalysisBPPPMTA2018" text="PMTA2018" />
                           </items>
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
