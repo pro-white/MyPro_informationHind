@@ -1,5 +1,3 @@
-package javafxControllers.pictureProcess.reversible.hind;
-
 import javafx.concurrent.ScheduledService;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -8,7 +6,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -21,7 +22,6 @@ import utils.Utils;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,13 +117,6 @@ public class ControllerHindImageMyMDP1 {
     public static ArrayList<Text> textimgNamesZT = new ArrayList<Text>();
 
     public static ArrayList<FlowPane> fps = new ArrayList<FlowPane>();
-
-    public static ArrayList<Integer> sss = new ArrayList<Integer>();
-    public static ArrayList<Integer> sss1 = new ArrayList<Integer>();
-    public static ArrayList<Integer> sss2 = new ArrayList<Integer>();
-    public static ArrayList<Integer> sss3= new ArrayList<Integer>();
-
-
 
 //    List<File> listfile;
 
@@ -311,9 +304,9 @@ public class ControllerHindImageMyMDP1 {
                     carrierHomei++;
                     carrierHomej = 0;
                 }
-//                if (num < 10 && carrierHomei == 1 && carrierHomej >= 495) {
-//                    System.out.println("x = " + x);
-//                }
+                if (num < 10 && carrierHomei == 1 && carrierHomej >= 495) {
+                    System.out.println("x = " + x);
+                }
 
                 int y = (bufCarrierRead[theNumberPicture].getRGB(carrierHomej, carrierHomei)) & 0xff;
                 carrierHomej++;
@@ -321,9 +314,9 @@ public class ControllerHindImageMyMDP1 {
                     carrierHomei++;
                     carrierHomej = 0;
                 }
-//                if (num < 10 && carrierHomei == 1 && carrierHomej >= 496) {
-//                    System.out.println("y = " + y);
-//                }
+                if (num < 10 && carrierHomei == 1 && carrierHomej >= 496) {
+                    System.out.println("y = " + y);
+                }
 
                 //步骤四 ：计算两个像素对的差值。
                 int d = Math.abs(x - y);
@@ -356,10 +349,10 @@ public class ControllerHindImageMyMDP1 {
                 //步骤六 ：通过模函数的模a ，通过指数函数计算得到嵌入信息位数b。
                 int b = (int) ((Math.log(a * a) / Math.log(2)));
 
-//                if (num < 5 && carrierHomei == 1 && carrierHomej >= 496) {
-//                    System.out.println("b = " + b);
-//                    numHind++;
-//                }
+                if (num < 5 && carrierHomei == 1 && carrierHomej >= 496) {
+                    System.out.println("b = " + b);
+                    numHind++;
+                }
 
                 //步骤七 ：已知嵌入信息数位数b，转化为十进制B。
                 int B = 0;// 是ei 位比特流的十进制值。
@@ -381,12 +374,12 @@ public class ControllerHindImageMyMDP1 {
                     }
                     int bit = ((bufHindRead[theNumberPicture].getRGB(hindHomej, hindHomei) & 0xff) >>> bitNumber--) & 1; // 获得字节中具体下标的二进制值。
                     B += bit * Math.pow(2, b - k);
-//                    if (numHind < 5 && numHind > 1) {
-//                        System.out.println("循环 bitNumber = " + bitNumber);
-//                        System.out.println("循环 hindPixel = " + ((bufHindRead[theNumberPicture].getRGB(hindHomej, hindHomei) & 0xff)));
-//                        System.out.println("循环 bit = " + bit);
-//                        System.out.println("循环 B = " + B);
-//                    }
+                    if (numHind < 5 && numHind > 1) {
+                        System.out.println("循环 bitNumber = " + bitNumber);
+                        System.out.println("循环 hindPixel = " + ((bufHindRead[theNumberPicture].getRGB(hindHomej, hindHomei) & 0xff)));
+                        System.out.println("循环 bit = " + bit);
+                        System.out.println("循环 B = " + B);
+                    }
                 }
 
                 //步骤八 ：通过模函数公式改变原像素值对的值,得到像素对的修改量。
@@ -404,27 +397,25 @@ public class ControllerHindImageMyMDP1 {
                         }
                     }
                 }
-//                if (num < 5 && carrierHomei == 1 && carrierHomej >= 496) {
-//                    System.out.println("bitNumber = " + bitNumber);
-//                    System.out.println("hindPixel = " + ((bufHindRead[theNumberPicture].getRGB(hindHomej, hindHomei) & 0xff)));
-//                    System.out.println("B = " + B);
-//                    System.out.println("ci = " + ci);
-//                    System.out.println("cj = " + cj);
-//                }
+                if (num < 5 && carrierHomei == 1 && carrierHomej >= 496) {
+                    System.out.println("bitNumber = " + bitNumber);
+                    System.out.println("hindPixel = " + ((bufHindRead[theNumberPicture].getRGB(hindHomej, hindHomei) & 0xff)));
+                    System.out.println("B = " + B);
+                    System.out.println("ci = " + ci);
+                    System.out.println("cj = " + cj);
+                }
 
                 //步骤九 ：将得到的修改量使用平均法分别写入两幅载体图像中。
                 int newx1 = x - (int) Math.floor((ci * 1.0) / 2.0);
                 int newx2 = x + (int) Math.ceil((ci * 1.0) / 2.0);
-                sss.add(newx1);
-                sss1.add(newx2);
                 int colorValuex1 = newx1 | newx1 << 8 | newx1 << 16;
                 int colorValuex2 = newx2 | newx2 << 8 | newx2 << 16;
                 bufSave1[theNumberPicture].setRGB(carrierEndj, carrierEndi, colorValuex1);
                 bufSave2[theNumberPicture].setRGB(carrierEndj, carrierEndi, colorValuex2);
-//                if (num < 10 && carrierHomei == 1 && carrierHomej >= 496) {
-//                    System.out.println("newx1 = " + newx1);
-//                    System.out.println("newx2 = " + newx2);
-//                }
+                if (num < 10 && carrierHomei == 1 && carrierHomej >= 496) {
+                    System.out.println("newx1 = " + newx1);
+                    System.out.println("newx2 = " + newx2);
+                }
                 carrierEndj++;
                 if (carrierEndj == widthCarrier) {
                     carrierEndj = 0;
@@ -433,18 +424,15 @@ public class ControllerHindImageMyMDP1 {
                 if (carrierEndi == heightCarrier) break;
                 int newy1 = y - (int) Math.floor((cj * 1.0) / 2.0);
                 int newy2 = y + (int) Math.ceil((cj * 1.0) / 2.0);
-                sss.add(newy1);
-                sss1.add(newy2);
-
                 int colorValuey1 = newy1 | newy1 << 8 | newy1 << 16;
                 int colorValuey2 = newy2 | newy2 << 8 | newy2 << 16;
                 bufSave1[theNumberPicture].setRGB(carrierEndj, carrierEndi, colorValuey1);
                 bufSave2[theNumberPicture].setRGB(carrierEndj, carrierEndi, colorValuey2);
-//                if (num < 10 && carrierHomei == 1 && carrierHomej >= 496) {
-//                    System.out.println("newy1 = " + newy1);
-//                    System.out.println("newy2 = " + newy2);
-//                    num++;
-//                }
+                if (num < 10 && carrierHomei == 1 && carrierHomej >= 496) {
+                    System.out.println("newy1 = " + newy1);
+                    System.out.println("newy2 = " + newy2);
+                    num++;
+                }
                 carrierEndj++;
                 if (carrierEndj == widthCarrier) {
                     carrierEndj = 0;
@@ -549,16 +537,10 @@ public class ControllerHindImageMyMDP1 {
                 if (carrierHomei == heightCarrier) break;
                 int x1 = (bufSave1[theNumberPicture].getRGB(carrierHomej, carrierHomei)) & 0xff;
                 int x2 = (bufSave2[theNumberPicture].getRGB(carrierHomej, carrierHomei)) & 0xff;
-                if (x1 != sss.get(num) || x2 != sss1.get(num)) {
-
-                    System.out.println("坐标x = " + carrierHomej);
-                    System.out.println("坐标y = " + carrierHomei);
-                    System.out.println("sssx1 = " + sss.get(num));
-                    System.out.println("sssx2 = " + sss1.get(num));
+                if (num < 10 && carrierHomei == 1 && carrierHomej >= 496) {
                     System.out.println("x1 = " + x1);
                     System.out.println("x2 = " + x2);
                 }
-                num++;
                 carrierHomej++;
                 if (carrierHomej == widthCarrier) {
                     carrierHomei++;
@@ -566,14 +548,11 @@ public class ControllerHindImageMyMDP1 {
                 }
                 int y1 = (bufSave1[theNumberPicture].getRGB(carrierHomej, carrierHomei)) & 0xff;
                 int y2 = (bufSave2[theNumberPicture].getRGB(carrierHomej, carrierHomei)) & 0xff;
-                if (y1 != sss.get(num) || y2 != sss1.get(num)) {
-                    System.out.println("sssy1 = " + sss.get(num));
-                    System.out.println("sssy2 = " + sss1.get(num));
+                if (num < 10 && carrierHomei == 1 && carrierHomej >= 496) {
                     System.out.println("y1 = " + y1);
-                    System.out.println("y2 = " + x2);
+                    System.out.println("y2 = " + y2);
+                    num++;
                 }
-                num++;
-
                 carrierHomej++;
                 if (carrierHomej == widthCarrier) {
                     carrierHomei++;
@@ -622,11 +601,11 @@ public class ControllerHindImageMyMDP1 {
                         bitNumber = 7;
                         int colorValue = pixelValues | pixelValues << 8 | pixelValues << 16;
                         imaHindOri.setRGB(hindHomej, hindHomei, colorValue);
-//                        if (pixelValues != (bufHindRead[theNumberPicture].getRGB(hindHomej, hindHomei) & 0xff) && num == 0) {
-//                            System.out.println("载体图像x = " + carrierHomej);
-//                            System.out.println("载体图像y = " + carrierHomei);
-//                            num++;
-//                        }
+                        if (pixelValues != (bufHindRead[theNumberPicture].getRGB(hindHomej, hindHomei) & 0xff) && num == 0) {
+                            System.out.println("载体图像x = " + carrierHomej);
+                            System.out.println("载体图像y = " + carrierHomei);
+                            num++;
+                        }
                         pixelValues = 0;
                         hindHomej++;
                         if (hindHomej == ShadowImageWidth) {

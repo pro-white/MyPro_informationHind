@@ -1,6 +1,5 @@
 package javafxControllers.pictureProcess.reversible.recovery;
 
-
 import javafx.concurrent.ScheduledService;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -214,7 +213,7 @@ public class ControllerHindImageRecoMyMDP1 {
             FileChooser fc = new FileChooser(); //创建一个file的对象
             fc.setTitle("图片多选选择");//为打开文件右上角的窗口命名。
             fc.setInitialDirectory(new File("C:"));//这是指定打开文件的路径
-            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("图片类型", "*.jpg", "*.png"));
+            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("图片类型", "*.jpg", "*.png", "*.tif", "*.tiff"));
             listfile = fc.showOpenMultipleDialog(stage); //多选文件，返回的是一个列表
             if (listfile == null) {
                 return;
